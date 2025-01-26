@@ -1,5 +1,6 @@
 // Import variables
 @use '../../../styles.scss' as *;
+@use "sass:color";
 
 @keyframes fadeIn {
   from { opacity: 0; }
@@ -103,7 +104,7 @@
     transition: all 0.3s ease;
 
     &:hover {
-      background-color: darken($orange-primary, 10%);
+      background-color: color.adjust($orange-primary, $lightness: -10%);
       box-shadow: 0 0 20px rgba($orange-primary, 0.4);
     }
   }
