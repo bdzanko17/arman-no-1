@@ -1,26 +1,26 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterLink } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { LanguageService } from '../services/language.service';
 
 @Component({
   selector: 'app-footer',
+  templateUrl: './footer.component.html',
+  styleUrls: ['./footer.component.scss'],
   standalone: true,
   imports: [
     CommonModule,
-    RouterModule,
+    RouterLink,
+    MatButtonModule,
     MatIconModule
-  ],
-  templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.scss']
+  ]
 })
 export class FooterComponent {
   currentYear = new Date().getFullYear();
 
-  constructor(private languageService: LanguageService) {}
-
   translate(key: string): string {
-    return this.languageService.translate(key);
+    // Return the key as is since we're removing translations
+    return key;
   }
 }

@@ -1,44 +1,33 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { MatToolbarModule } from '@angular/material/toolbar';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatMenuModule } from '@angular/material/menu';
-import { LanguageService, Language } from '../services/language.service';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @Component({
   selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.scss'],
   standalone: true,
   imports: [
     CommonModule,
-    RouterModule,
-    MatToolbarModule,
+    RouterLink,
+    RouterLinkActive,
     MatButtonModule,
     MatIconModule,
-    MatMenuModule
-  ],
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+    MatToolbarModule
+  ]
 })
 export class HeaderComponent {
   isMenuOpen = false;
-
-  constructor(private languageService: LanguageService) {}
-
-  get currentLang$() {
-    return this.languageService.currentLang$;
-  }
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
   }
 
   translate(key: string): string {
-    return this.languageService.translate(key);
-  }
-
-  setLanguage(lang: Language) {
-    this.languageService.setLanguage(lang);
+    // Return the key as is since we're removing translations
+    return key;
   }
 }

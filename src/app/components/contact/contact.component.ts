@@ -1,27 +1,25 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { LanguageService } from '../../shared/services/language.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-contact',
+  templateUrl: './contact.component.html',
+  styleUrls: ['./contact.component.scss'],
   standalone: true,
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule,
-    MatIconModule,
-    MatSnackBarModule
-  ],
-  templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.scss']
+    MatIconModule
+  ]
 })
 export class ContactComponent {
   contactForm: FormGroup;
@@ -29,7 +27,7 @@ export class ContactComponent {
   salonPhone = '+387 61 123 456';
   salonAddress = 'Sarajevo, Bosnia and Herzegovina';
 
-  constructor(private fb: FormBuilder, private snackBar: MatSnackBar, private languageService: LanguageService) {
+  constructor(private fb: FormBuilder, private snackBar: MatSnackBar) {
     this.contactForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(2)]],
       email: ['', [Validators.required, Validators.email]],
@@ -40,19 +38,18 @@ export class ContactComponent {
 
   onSubmit() {
     if (this.contactForm.valid) {
-      // In a real application, you would send this to your backend
       console.log(this.contactForm.value);
       this.snackBar.open('Message sent successfully!', 'Close', {
         duration: 3000,
-        horizontalPosition: 'end',
-        verticalPosition: 'top'
+        horizontalPosition: 'center',
+        verticalPosition: 'bottom'
       });
       this.contactForm.reset();
     } else {
-      this.snackBar.open('Please fill all required fields correctly.', 'Close', {
+      this.snackBar.open('Please fill out all required fields correctly.', 'Close', {
         duration: 3000,
-        horizontalPosition: 'end',
-        verticalPosition: 'top'
+        horizontalPosition: 'center',
+        verticalPosition: 'bottom'
       });
     }
   }
@@ -74,6 +71,6 @@ export class ContactComponent {
   }
 
   translate(key: string): string {
-    return this.languageService.translate(key);
+    return key;
   }
 }

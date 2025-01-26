@@ -6,35 +6,22 @@
     
     <a routerLink="/" class="brand-name">ARMAN</a>
     
-    <div class="nav-links" [class.show-mobile]="isMenuOpen">
+    <nav class="nav-links" [class.show-mobile]="isMenuOpen">
       <a mat-button routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-        {{translate('home')}}
+        Home
       </a>
       <a mat-button routerLink="/services" routerLinkActive="active">
-        {{translate('services')}}
+        Services
       </a>
       <a mat-button routerLink="/stylists" routerLinkActive="active">
-        {{translate('stylists')}}
+        Our Stylists
       </a>
       <a mat-button routerLink="/booking" routerLinkActive="active">
-        {{translate('booking')}}
+        Book Now
       </a>
       <a mat-button routerLink="/contact" routerLinkActive="active">
-        {{translate('contact')}}
+        Contact
       </a>
-
-      <button mat-button [matMenuTriggerFor]="languageMenu" class="lang-button">
-        <mat-icon>language</mat-icon>
-        {{(currentLang$ | async) ?? 'en' | uppercase}}
-      </button>
-      <mat-menu #languageMenu="matMenu">
-        <button mat-menu-item (click)="setLanguage('en')">
-          <span [class.active]="(currentLang$ | async) === 'en'">English</span>
-        </button>
-        <button mat-menu-item (click)="setLanguage('bs')">
-          <span [class.active]="(currentLang$ | async) === 'bs'">Bosanski</span>
-        </button>
-      </mat-menu>
-    </div>
+    </nav>
   </div>
 </mat-toolbar>

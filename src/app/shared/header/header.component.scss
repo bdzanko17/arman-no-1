@@ -1,68 +1,64 @@
 // Import variables
 @use '../../../styles.scss' as *;
 
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap');
+
 .mat-toolbar {
-  background: var(--background-elevated);
-  height: 80px;
-  padding: 0;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
+  background: rgba(0, 0, 0, 0.95);
   border-bottom: 1px solid rgba($orange-primary, 0.3);
-  backdrop-filter: blur(10px);
+  padding: 0;
+  height: 80px;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-bottom-color: $orange-primary;
+  }
 }
 
 .header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 100%;
 }
 
 .brand-name {
-  font-size: 2.5rem;
-  font-family: 'Playfair Display', serif;
   color: $pure-white;
   text-decoration: none;
-  letter-spacing: 4px;
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 3px;
   transition: all 0.3s ease;
-  font-weight: 600;
   position: relative;
-  padding: 0.5rem 1rem;
-  
-  &::before, &::after {
-    content: '';
-    position: absolute;
-    width: 6px;
-    height: 6px;
-    background: $orange-primary;
-    border-radius: 50%;
-    transition: all 0.3s ease;
-  }
-
-  &::before {
-    top: 0;
-    left: 0;
-  }
+  padding: 0.5rem 0;
 
   &::after {
+    content: '';
+    position: absolute;
     bottom: 0;
-    right: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: $orange-primary;
+    transition: width 0.3s ease;
   }
-  
+
   &:hover {
     color: $orange-primary;
-    text-shadow: 0 0 20px rgba($orange-primary, 0.3);
+    transform: translateY(-1px);
     
-    &::before, &::after {
-      transform: scale(1.5);
-      box-shadow: 0 0 10px rgba($orange-primary, 0.5);
+    &::after {
+      width: 100%;
     }
   }
 }
@@ -70,17 +66,20 @@
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  
+  gap: 2rem;
+
   a {
-    color: $pure-white;
-    font-size: 0.9rem;
+    color: rgba($pure-white, 0.85);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 0.95rem;
     letter-spacing: 1px;
     text-transform: uppercase;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 0;
     position: relative;
-    transition: color 0.3s ease;
-    
+
     &::after {
       content: '';
       position: absolute;
@@ -89,58 +88,21 @@
       width: 0;
       height: 2px;
       background: $orange-primary;
+      transition: all 0.3s ease;
       transform: translateX(-50%);
-      transition: width 0.3s ease;
     }
-    
-    &:hover,
-    &.active {
+
+    &:hover, &.active {
       color: $orange-primary;
-      
+      transform: translateY(-1px);
+
       &::after {
-        width: calc(100% - 2rem);
+        width: 100%;
       }
     }
-  }
-}
 
-.lang-button {
-  color: $pure-white;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-left: 1rem;
-  padding: 0.5rem 1rem;
-  border: 1px solid rgba($orange-primary, 0.3);
-  border-radius: 4px;
-  
-  mat-icon {
-    font-size: 1.2rem;
-    width: 1.2rem;
-    height: 1.2rem;
-  }
-  
-  &:hover {
-    background: rgba($orange-primary, 0.1);
-    border-color: $orange-primary;
-  }
-}
-
-::ng-deep {
-  .mat-menu-panel {
-    background: var(--background-elevated);
-    border: 1px solid $orange-primary;
-    
-    .mat-menu-item {
-      color: $pure-white;
-      
-      &:hover {
-        background: rgba($orange-primary, 0.1);
-      }
-      
-      span.active {
-        color: $orange-primary;
-      }
+    &.active::after {
+      width: 100%;
     }
   }
 }
@@ -148,29 +110,30 @@
 .menu-button {
   display: none;
   color: $pure-white;
-  
-  mat-icon {
-    font-size: 2rem;
+  transition: all 0.3s ease;
+
+  &:hover {
+    color: $orange-primary;
+    transform: scale(1.1);
   }
 }
 
 // Add margin to main content to account for fixed header
-:host {
-  display: block;
-  
-  & + * {
-    margin-top: 80px;
-  }
+::ng-deep app-root {
+  padding-top: 80px;
 }
 
 @media (max-width: 768px) {
+  .mat-toolbar {
+    height: 70px;
+  }
+
   .header-container {
     padding: 0 1rem;
   }
 
   .brand-name {
-    font-size: 2rem;
-    letter-spacing: 3px;
+    font-size: 1.5rem;
   }
 
   .menu-button {
@@ -178,38 +141,33 @@
   }
 
   .nav-links {
-    display: none;
-    position: absolute;
-    top: 80px;
+    position: fixed;
+    top: 70px;
     left: 0;
     right: 0;
-    background: var(--background-elevated);
+    background: rgba(0, 0, 0, 0.98);
     flex-direction: column;
-    padding: 1rem 0;
+    padding: 2rem;
+    gap: 1.5rem;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease;
+    z-index: 999;
+    margin-right: 0;
     border-bottom: 1px solid rgba($orange-primary, 0.3);
-    backdrop-filter: blur(10px);
-    
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+
     &.show-mobile {
-      display: flex;
+      transform: translateY(0);
     }
-    
-    a, .lang-button {
+
+    a {
       width: 100%;
       text-align: center;
-      padding: 1rem;
-      margin: 0;
-      border: none;
-      border-radius: 0;
-      
+      font-size: 1.1rem;
+      padding: 0.75rem;
+
       &::after {
-        bottom: 5px;
-      }
-      
-      &:hover,
-      &.active {
-        &::after {
-          width: 100px;
-        }
+        bottom: 0;
       }
     }
   }

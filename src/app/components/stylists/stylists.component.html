@@ -9,14 +9,14 @@
       <div class="stylist-image">
         <img [src]="stylist.image" [alt]="stylist.name">
         <div class="social-links">
-          <a [href]="stylist.instagram" target="_blank">
+          <a [href]="stylist.socialLinks.instagram" target="_blank">
             <mat-icon>photo_camera</mat-icon>
           </a>
-          <a [href]="stylist.facebook" target="_blank">
+          <a [href]="stylist.socialLinks.facebook" target="_blank">
             <mat-icon>facebook</mat-icon>
           </a>
-          <a [href]="stylist.pinterest" target="_blank">
-            <mat-icon>link</mat-icon>
+          <a [href]="stylist.socialLinks.twitter" target="_blank">
+            <mat-icon>twitter</mat-icon>
           </a>
         </div>
       </div>
