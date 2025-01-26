@@ -5,39 +5,37 @@
   </div>
 
   <div class="stylists-grid">
-    @for (stylist of stylists; track stylist.name) {
-      <div class="stylist-card">
-        <div class="stylist-image">
-          <img [src]="stylist.image" [alt]="stylist.name">
-          <div class="social-links">
-            <a [href]="stylist.instagram" target="_blank">
-              <mat-icon>photo_camera</mat-icon>
-            </a>
-            <a [href]="stylist.facebook" target="_blank">
-              <mat-icon>facebook</mat-icon>
-            </a>
-            <a [href]="stylist.pinterest" target="_blank">
-              <mat-icon>link</mat-icon>
-            </a>
-          </div>
-        </div>
-
-        <div class="stylist-info">
-          <h2>{{stylist.name}}</h2>
-          <h3>{{translate(stylist.position)}}</h3>
-          <p>{{stylist.description}}</p>
-          
-          <div class="specialties">
-            @for (specialty of stylist.specialties; track specialty) {
-              <span class="specialty-tag">{{translate(specialty)}}</span>
-            }
-          </div>
-
-          <a mat-flat-button routerLink="/booking" class="book-button">
-            {{translate('bookAppointment')}}
+    <div class="stylist-card" *ngFor="let stylist of stylists">
+      <div class="stylist-image">
+        <img [src]="stylist.image" [alt]="stylist.name">
+        <div class="social-links">
+          <a [href]="stylist.instagram" target="_blank">
+            <mat-icon>photo_camera</mat-icon>
+          </a>
+          <a [href]="stylist.facebook" target="_blank">
+            <mat-icon>facebook</mat-icon>
+          </a>
+          <a [href]="stylist.pinterest" target="_blank">
+            <mat-icon>link</mat-icon>
           </a>
         </div>
       </div>
-    }
+
+      <div class="stylist-info">
+        <h2>{{stylist.name}}</h2>
+        <h3>{{translate(stylist.position)}}</h3>
+        <p>{{stylist.description}}</p>
+        
+        <div class="specialties">
+          <span class="specialty-tag" *ngFor="let specialty of stylist.specialties">
+            {{translate(specialty)}}
+          </span>
+        </div>
+
+        <a mat-flat-button routerLink="/booking" class="book-button">
+          {{translate('bookAppointment')}}
+        </a>
+      </div>
+    </div>
   </div>
 </div>

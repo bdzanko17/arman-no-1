@@ -25,7 +25,7 @@
 
       <button mat-button [matMenuTriggerFor]="languageMenu" class="lang-button">
         <mat-icon>language</mat-icon>
-        {{(currentLang$ | async)?.toUpperCase()}}
+        {{(currentLang$ | async) ?? 'en' | uppercase}}
       </button>
       <mat-menu #languageMenu="matMenu">
         <button mat-menu-item (click)="setLanguage('en')">

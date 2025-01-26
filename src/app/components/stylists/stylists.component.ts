@@ -17,7 +17,7 @@ import { LanguageService } from '../../shared/services/language.service';
     MatIconModule
   ],
   templateUrl: './stylists.component.html',
-  styleUrl: './stylists.component.scss'
+  styleUrls: ['./stylists.component.scss']
 })
 export class StylistsComponent {
   stylists = [

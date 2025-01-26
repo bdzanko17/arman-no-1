@@ -14,23 +14,21 @@
   </div>
 
   <div class="services-grid">
-    @for (service of services; track service.name) {
-      <mat-card class="service-card">
-        <div class="service-icon">
-          <mat-icon [fontIcon]="service.icon"></mat-icon>
-        </div>
-        <mat-card-header>
-          <mat-card-title>{{service.name}}</mat-card-title>
-          <mat-card-subtitle>{{service.duration}} | {{service.price}}</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content>
-          <p>{{service.description}}</p>
-        </mat-card-content>
-        <mat-card-actions>
-          <button mat-stroked-button class="book-button" routerLink="/booking">Book Now</button>
-        </mat-card-actions>
-      </mat-card>
-    }
+    <mat-card class="service-card" *ngFor="let service of services">
+      <div class="service-icon">
+        <mat-icon [fontIcon]="service.icon"></mat-icon>
+      </div>
+      <mat-card-header>
+        <mat-card-title>{{service.name}}</mat-card-title>
+        <mat-card-subtitle>{{service.duration}} | {{service.price}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p>{{service.description}}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-stroked-button class="book-button" routerLink="/booking">Book Now</button>
+      </mat-card-actions>
+    </mat-card>
   </div>
 </section>
 

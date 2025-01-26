@@ -29,9 +29,7 @@
       <mat-form-field appearance="outline">
         <mat-label>Select Service</mat-label>
         <mat-select formControlName="service">
-          @for (service of services; track service) {
-            <mat-option [value]="service">{{service}}</mat-option>
-          }
+          <mat-option *ngFor="let service of services" [value]="service">{{service}}</mat-option>
         </mat-select>
         <mat-error *ngIf="bookingForm.get('service')?.invalid">{{getErrorMessage('service')}}</mat-error>
       </mat-form-field>
@@ -47,9 +45,7 @@
       <mat-form-field appearance="outline">
         <mat-label>Preferred Time</mat-label>
         <mat-select formControlName="time">
-          @for (time of timeSlots; track time) {
-            <mat-option [value]="time">{{time}}</mat-option>
-          }
+          <mat-option *ngFor="let time of timeSlots" [value]="time">{{time}}</mat-option>
         </mat-select>
         <mat-error *ngIf="bookingForm.get('time')?.invalid">{{getErrorMessage('time')}}</mat-error>
       </mat-form-field>

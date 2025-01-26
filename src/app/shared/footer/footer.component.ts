@@ -8,7 +8,7 @@ import { LanguageService } from '../services/language.service';
   standalone: true,
   imports: [MatToolbarModule, MatIconModule],
   templateUrl: './footer.component.html',
-  styleUrl: './footer.component.scss'
+  styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent {
   currentYear = new Date().getFullYear();

@@ -19,7 +19,7 @@ import { LanguageService, Language } from '../services/language.service';
     MatMenuModule
   ],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss'
+  styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
   isMenuOpen = false;

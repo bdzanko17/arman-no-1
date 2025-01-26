@@ -21,7 +21,7 @@ import { LanguageService } from '../../shared/services/language.service';
     MatSnackBarModule
   ],
   templateUrl: './contact.component.html',
-  styleUrl: './contact.component.scss'
+  styleUrls: ['./contact.component.scss']
 })
 export class ContactComponent {
   contactForm: FormGroup;
