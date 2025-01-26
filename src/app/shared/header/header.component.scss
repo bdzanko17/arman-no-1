@@ -1,0 +1,216 @@
+// Import variables
+@use '../../../styles.scss' as *;
+
+.mat-toolbar {
+  background: var(--background-elevated);
+  height: 80px;
+  padding: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  border-bottom: 1px solid rgba($orange-primary, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.header-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.brand-name {
+  font-size: 2.5rem;
+  font-family: 'Playfair Display', serif;
+  color: $pure-white;
+  text-decoration: none;
+  letter-spacing: 4px;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  position: relative;
+  padding: 0.5rem 1rem;
+  
+  &::before, &::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: $orange-primary;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+  }
+
+  &::before {
+    top: 0;
+    left: 0;
+  }
+
+  &::after {
+    bottom: 0;
+    right: 0;
+  }
+  
+  &:hover {
+    color: $orange-primary;
+    text-shadow: 0 0 20px rgba($orange-primary, 0.3);
+    
+    &::before, &::after {
+      transform: scale(1.5);
+      box-shadow: 0 0 10px rgba($orange-primary, 0.5);
+    }
+  }
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  
+  a {
+    color: $pure-white;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 0.5rem 1rem;
+    position: relative;
+    transition: color 0.3s ease;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: $orange-primary;
+      transform: translateX(-50%);
+      transition: width 0.3s ease;
+    }
+    
+    &:hover,
+    &.active {
+      color: $orange-primary;
+      
+      &::after {
+        width: calc(100% - 2rem);
+      }
+    }
+  }
+}
+
+.lang-button {
+  color: $pure-white;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: 1rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba($orange-primary, 0.3);
+  border-radius: 4px;
+  
+  mat-icon {
+    font-size: 1.2rem;
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+  
+  &:hover {
+    background: rgba($orange-primary, 0.1);
+    border-color: $orange-primary;
+  }
+}
+
+::ng-deep {
+  .mat-menu-panel {
+    background: var(--background-elevated);
+    border: 1px solid $orange-primary;
+    
+    .mat-menu-item {
+      color: $pure-white;
+      
+      &:hover {
+        background: rgba($orange-primary, 0.1);
+      }
+      
+      span.active {
+        color: $orange-primary;
+      }
+    }
+  }
+}
+
+.menu-button {
+  display: none;
+  color: $pure-white;
+  
+  mat-icon {
+    font-size: 2rem;
+  }
+}
+
+// Add margin to main content to account for fixed header
+:host {
+  display: block;
+  
+  & + * {
+    margin-top: 80px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-container {
+    padding: 0 1rem;
+  }
+
+  .brand-name {
+    font-size: 2rem;
+    letter-spacing: 3px;
+  }
+
+  .menu-button {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    right: 0;
+    background: var(--background-elevated);
+    flex-direction: column;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba($orange-primary, 0.3);
+    backdrop-filter: blur(10px);
+    
+    &.show-mobile {
+      display: flex;
+    }
+    
+    a, .lang-button {
+      width: 100%;
+      text-align: center;
+      padding: 1rem;
+      margin: 0;
+      border: none;
+      border-radius: 0;
+      
+      &::after {
+        bottom: 5px;
+      }
+      
+      &:hover,
+      &.active {
+        &::after {
+          width: 100px;
+        }
+      }
+    }
+  }
+}

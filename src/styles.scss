@@ -1,1 +1,197 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap');
+
+// Colors
+$pure-black: #000000;
+$soft-black: #1a1a1a;
+$darker-gray: #212121;
+$dark-gray: #2d2d2d;
+$orange-primary: #ff6b2b;
+$orange-light: #ff8f5a;
+$orange-dark: #cc4c16;
+$pure-white: #ffffff;
+
+// Global styles
+:root {
+  --background-primary: #{$soft-black};
+  --background-secondary: #{$dark-gray};
+  --background-elevated: #{$darker-gray};
+  --text-primary: #{$pure-white};
+  --text-secondary: rgba(255, 255, 255, 0.87);
+  --accent-primary: #{$orange-primary};
+  --accent-light: #{$orange-light};
+  --accent-dark: #{$orange-dark};
+  
+  // Material Design Variables
+  --mat-toolbar-container-background-color: var(--background-elevated);
+  --mat-toolbar-container-text-color: var(--text-primary);
+  --mdc-filled-button-container-color: var(--background-elevated);
+  --mdc-filled-button-label-text-color: var(--text-primary);
+  --mdc-outlined-button-outline-color: var(--text-primary);
+  --mdc-outlined-button-label-text-color: var(--text-primary);
+  --mdc-text-button-label-text-color: var(--text-primary);
+  --mat-badge-background-color: var(--accent-primary);
+  --mat-badge-text-color: var(--text-primary);
+  --mat-calendar-body-selected-cell-background-color: var(--accent-primary);
+  --mat-calendar-body-selected-cell-content-color: var(--text-primary);
+  --mat-calendar-body-cell-content-color: var(--text-primary);
+  --mat-calendar-body-label-color: var(--text-primary);
+  --mat-datepicker-toggle-active-state-icon-color: var(--text-primary);
+  --mat-expansion-panel-background-color: var(--background-elevated);
+  --mat-sidenav-container-background-color: var(--background-primary);
+  --mdc-theme-primary: var(--accent-primary);
+  --mdc-theme-on-primary: var(--text-primary);
+  --mdc-theme-secondary: var(--accent-light);
+  --mdc-theme-on-secondary: var(--text-primary);
+  --mdc-theme-surface: var(--background-elevated);
+  --mdc-theme-on-surface: var(--text-primary);
+  --mdc-theme-background: var(--background-primary);
+}
+
+// Base styles
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: var(--background-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+// Typography
+h1, h2, h3, h4, h5 {
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 1.5rem;
+  color: var(--text-primary);
+  letter-spacing: 1px;
+  font-weight: 500;
+  
+  &::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--accent-primary);
+    margin-top: 0.8rem;
+  }
+}
+
+// Container
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: var(--background-secondary);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+// Material overrides
+.mat-mdc-card {
+  background: var(--background-elevated) !important;
+  color: var(--text-primary) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 8px !important;
+  
+  &:hover {
+    border-color: var(--accent-primary) !important;
+  }
+}
+
+.mat-mdc-button {
+  &.mat-primary {
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-dark)) !important;
+    color: var(--text-primary) !important;
+    
+    &:hover {
+      background: linear-gradient(135deg, var(--accent-light), var(--accent-primary)) !important;
+    }
+  }
+}
+
+// Buttons
+.primary-button {
+  background: var(--accent-primary) !important;
+  color: var(--text-primary) !important;
+  border: none !important;
+  padding: 1rem 2.5rem !important;
+  font-family: 'Poppins', sans-serif !important;
+  text-transform: uppercase !important;
+  letter-spacing: 2px !important;
+  font-size: 0.9rem !important;
+  transition: all 0.3s ease !important;
+  border-radius: 4px !important;
+  
+  &:hover {
+    background: var(--accent-dark) !important;
+    transform: translateY(-2px);
+  }
+}
+
+.outline-button {
+  background: transparent !important;
+  color: var(--text-primary) !important;
+  border: 2px solid var(--accent-primary) !important;
+  padding: 0.9rem 2.4rem !important;
+  font-family: 'Poppins', sans-serif !important;
+  text-transform: uppercase !important;
+  letter-spacing: 2px !important;
+  font-size: 0.9rem !important;
+  transition: all 0.3s ease !important;
+  border-radius: 4px !important;
+
+  &:hover {
+    background: var(--accent-primary) !important;
+  }
+}
+
+// Animations
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+// Utility classes
+.text-gradient {
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bg-elevated {
+  background: var(--background-elevated);
+}
+
+.border-accent {
+  border: 1px solid var(--accent-primary);
+}
+
+// Scrollbar
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background: var(--background-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent-primary);
+  border-radius: 4px;
+  
+  &:hover {
+    background: var(--accent-light);
+  }
+}
+

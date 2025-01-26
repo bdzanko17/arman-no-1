@@ -1,0 +1,69 @@
+<div class="booking-container">
+  <div class="booking-header">
+    <h1>Book an Appointment</h1>
+    <p>Schedule your next visit with our expert stylists</p>
+  </div>
+
+  <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()" class="booking-form">
+    <div class="form-grid">
+      <!-- Personal Information -->
+      <mat-form-field appearance="outline">
+        <mat-label>Full Name</mat-label>
+        <input matInput formControlName="name" placeholder="Enter your full name">
+        <mat-error *ngIf="bookingForm.get('name')?.invalid">{{getErrorMessage('name')}}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Email Address</mat-label>
+        <input matInput formControlName="email" placeholder="Enter your email">
+        <mat-error *ngIf="bookingForm.get('email')?.invalid">{{getErrorMessage('email')}}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Phone Number</mat-label>
+        <input matInput formControlName="phone" placeholder="Enter your phone number">
+        <mat-error *ngIf="bookingForm.get('phone')?.invalid">{{getErrorMessage('phone')}}</mat-error>
+      </mat-form-field>
+
+      <!-- Appointment Details -->
+      <mat-form-field appearance="outline">
+        <mat-label>Select Service</mat-label>
+        <mat-select formControlName="service">
+          @for (service of services; track service) {
+            <mat-option [value]="service">{{service}}</mat-option>
+          }
+        </mat-select>
+        <mat-error *ngIf="bookingForm.get('service')?.invalid">{{getErrorMessage('service')}}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Preferred Date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="date" placeholder="Choose a date">
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="bookingForm.get('date')?.invalid">{{getErrorMessage('date')}}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Preferred Time</mat-label>
+        <mat-select formControlName="time">
+          @for (time of timeSlots; track time) {
+            <mat-option [value]="time">{{time}}</mat-option>
+          }
+        </mat-select>
+        <mat-error *ngIf="bookingForm.get('time')?.invalid">{{getErrorMessage('time')}}</mat-error>
+      </mat-form-field>
+
+      <!-- Special Notes -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Special Notes or Requests</mat-label>
+        <textarea matInput formControlName="notes" rows="4" 
+                placeholder="Any special requests, concerns, or additional information"></textarea>
+      </mat-form-field>
+    </div>
+
+    <div class="form-actions">
+      <button mat-raised-button type="submit">Book Appointment</button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,49 @@
+<div class="contact-container">
+  <div class="contact-info">
+    <h1>Contact Us</h1>
+    <p>Get in touch with us for any inquiries or to schedule an appointment.</p>
+    
+    <div class="contact-details">
+      <div class="contact-item">
+        <mat-icon>email</mat-icon>
+        <a href="mailto:{{salonEmail}}">{{salonEmail}}</a>
+      </div>
+      <div class="contact-item">
+        <mat-icon>phone</mat-icon>
+        <span>Call us: (555) 123-4567</span>
+      </div>
+      <div class="contact-item">
+        <mat-icon>location_on</mat-icon>
+        <span>123 Beauty Street, Fashion District</span>
+      </div>
+    </div>
+  </div>
+
+  <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form">
+    <mat-form-field appearance="outline">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" placeholder="Your name">
+      <mat-error *ngIf="contactForm.get('name')?.invalid">{{getErrorMessage('name')}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" placeholder="Your email">
+      <mat-error *ngIf="contactForm.get('email')?.invalid">{{getErrorMessage('email')}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Phone</mat-label>
+      <input matInput formControlName="phone" placeholder="Your phone number">
+      <mat-error *ngIf="contactForm.get('phone')?.invalid">{{getErrorMessage('phone')}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Message</mat-label>
+      <textarea matInput formControlName="message" rows="4" placeholder="Your message"></textarea>
+      <mat-error *ngIf="contactForm.get('message')?.invalid">{{getErrorMessage('message')}}</mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit">Send Message</button>
+  </form>
+</div>

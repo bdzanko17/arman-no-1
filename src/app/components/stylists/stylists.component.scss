@@ -1,0 +1,223 @@
+// Import variables
+@use '../../../styles.scss' as *;
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.stylists-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  background: $pure-black;
+}
+
+.stylists-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  animation: fadeIn 0.6s ease-out;
+
+  h1 {
+    font-size: 3.5rem;
+    color: $pure-white;
+    font-family: 'Playfair Display', serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background: $orange-primary;
+      box-shadow: 0 0 15px $orange-light;
+    }
+  }
+
+  p {
+    color: $orange-primary;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+.stylists-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 3rem;
+}
+
+.stylist-card {
+  background: rgba($pure-black, 0.9);
+  border: 1px solid $orange-primary;
+  overflow: hidden;
+  animation: fadeIn 0.6s ease-out forwards;
+  
+  @for $i from 1 through 3 {
+    &:nth-child(#{$i}) {
+      animation-delay: #{$i * 0.2}s;
+    }
+  }
+}
+
+.stylist-image {
+  position: relative;
+  height: 400px;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+
+  .social-links {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    background: linear-gradient(to top, rgba($pure-black, 0.8), transparent);
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+
+    a {
+      color: $pure-white;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: $orange-primary;
+      }
+
+      mat-icon {
+        font-size: 1.5rem;
+      }
+    }
+  }
+
+  &:hover {
+    img {
+      transform: scale(1.05);
+    }
+
+    .social-links {
+      transform: translateY(0);
+    }
+  }
+}
+
+.stylist-info {
+  padding: 2rem;
+  text-align: center;
+
+  h2 {
+    font-size: 2rem;
+    color: $pure-white;
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 0.5rem;
+  }
+
+  h3 {
+    font-size: 1.1rem;
+    color: $orange-primary;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1.5rem;
+  }
+
+  p {
+    color: $pure-white;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.specialties {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+
+  .specialty-tag {
+    background: rgba($orange-primary, 0.1);
+    color: $orange-primary;
+    padding: 0.5rem 1rem;
+    border: 1px solid $orange-primary;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+  }
+}
+
+.book-button {
+  background: transparent;
+  color: $pure-white;
+  border: 1px solid $orange-primary;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: $orange-primary;
+    transition: transform 0.3s ease;
+    z-index: -1;
+  }
+
+  &:hover {
+    color: $pure-white;
+
+    &::after {
+      transform: translateX(100%);
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .stylists-container {
+    padding: 2rem 1rem;
+  }
+
+  .stylists-header {
+    margin-bottom: 2rem;
+
+    h1 {
+      font-size: 2.5rem;
+    }
+
+    p {
+      font-size: 1rem;
+    }
+  }
+
+  .stylists-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .stylist-image {
+    height: 300px;
+  }
+}

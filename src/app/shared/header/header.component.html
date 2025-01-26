@@ -1,0 +1,40 @@
+<mat-toolbar>
+  <div class="header-container">
+    <button mat-icon-button (click)="toggleMenu()" class="menu-button">
+      <mat-icon>menu</mat-icon>
+    </button>
+    
+    <a routerLink="/" class="brand-name">ARMAN</a>
+    
+    <div class="nav-links" [class.show-mobile]="isMenuOpen">
+      <a mat-button routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        {{translate('home')}}
+      </a>
+      <a mat-button routerLink="/services" routerLinkActive="active">
+        {{translate('services')}}
+      </a>
+      <a mat-button routerLink="/stylists" routerLinkActive="active">
+        {{translate('stylists')}}
+      </a>
+      <a mat-button routerLink="/booking" routerLinkActive="active">
+        {{translate('booking')}}
+      </a>
+      <a mat-button routerLink="/contact" routerLinkActive="active">
+        {{translate('contact')}}
+      </a>
+
+      <button mat-button [matMenuTriggerFor]="languageMenu" class="lang-button">
+        <mat-icon>language</mat-icon>
+        {{(currentLang$ | async)?.toUpperCase()}}
+      </button>
+      <mat-menu #languageMenu="matMenu">
+        <button mat-menu-item (click)="setLanguage('en')">
+          <span [class.active]="(currentLang$ | async) === 'en'">English</span>
+        </button>
+        <button mat-menu-item (click)="setLanguage('bs')">
+          <span [class.active]="(currentLang$ | async) === 'bs'">Bosanski</span>
+        </button>
+      </mat-menu>
+    </div>
+  </div>
+</mat-toolbar>

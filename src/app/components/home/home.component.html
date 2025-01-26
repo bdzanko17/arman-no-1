@@ -1,0 +1,73 @@
+<section class="hero-section">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1>Experience <span>Luxury</span> Hair Care</h1>
+    <p>Where Style Meets Sophistication</p>
+    <button mat-raised-button class="primary-button">Book Your Transformation</button>
+  </div>
+</section>
+
+<section class="services-section">
+  <div class="section-header">
+    <h2>Our <span>Premium</span> Services</h2>
+    <p>Indulge in our exclusive beauty treatments</p>
+  </div>
+
+  <div class="services-grid">
+    @for (service of services; track service.name) {
+      <mat-card class="service-card">
+        <div class="service-icon">
+          <mat-icon [fontIcon]="service.icon"></mat-icon>
+        </div>
+        <mat-card-header>
+          <mat-card-title>{{service.name}}</mat-card-title>
+          <mat-card-subtitle>{{service.duration}} | {{service.price}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p>{{service.description}}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-stroked-button class="book-button" routerLink="/booking">Book Now</button>
+        </mat-card-actions>
+      </mat-card>
+    }
+  </div>
+</section>
+
+<section class="features-section">
+  <div class="section-header">
+    <h2>The <span>Elegance</span> Experience</h2>
+    <p>Discover what sets us apart</p>
+  </div>
+
+  <div class="features-grid">
+    <div class="feature-card">
+      <mat-icon>auto_awesome</mat-icon>
+      <h3>Expert Stylists</h3>
+      <p>Our master stylists bring years of expertise and creativity to every service</p>
+    </div>
+    <div class="feature-card">
+      <mat-icon>spa</mat-icon>
+      <h3>Luxury Environment</h3>
+      <p>Immerse yourself in our sophisticated and tranquil salon atmosphere</p>
+    </div>
+    <div class="feature-card">
+      <mat-icon>diamond</mat-icon>
+      <h3>Premium Products</h3>
+      <p>Experience the finest hair care products selected for exceptional results</p>
+    </div>
+    <div class="feature-card">
+      <mat-icon>schedule</mat-icon>
+      <h3>Flexible Scheduling</h3>
+      <p>Book your appointments at your convenience with our easy online system</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="cta-content">
+    <h2>Ready for Your <span>Transformation</span>?</h2>
+    <p>Let us help you achieve the perfect look you've always dreamed of</p>
+    <button mat-raised-button class="luxury-button" routerLink="/booking">Book Your Experience</button>
+  </div>
+</section>

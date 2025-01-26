@@ -1,0 +1,42 @@
+// Import variables
+@use '../../../styles.scss' as *;
+
+.mat-toolbar {
+  background: $pure-black;
+  min-height: 40px;
+  height: auto;
+  padding: 0.5rem;
+  border-top: 1px solid rgba($orange-primary, 0.3);
+}
+
+.footer-content {
+  width: 100%;
+  text-align: center;
+  
+  p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: rgba($pure-white, 0.7);
+    
+    span {
+      color: $orange-primary;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .mat-toolbar {
+    padding: 1.5rem 1rem;
+  }
+  
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+    
+    .footer-section {
+      .social-links {
+        justify-content: center;
+      }
+    }
+  }
+}
