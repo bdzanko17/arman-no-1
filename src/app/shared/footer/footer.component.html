@@ -1,3 +1,56 @@
-<footer>
-  <p>&copy; {{currentYear}} <span>ARMAN</span>. {{translate('allRightsReserved')}}.</p>
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-section">
+      <h3>{{translate('aboutUs')}}</h3>
+      <p>{{translate('salonDescription')}}</p>
+      <div class="social-links">
+        <a href="#" target="_blank" aria-label="Facebook">
+          <mat-icon>facebook</mat-icon>
+        </a>
+        <a href="#" target="_blank" aria-label="Instagram">
+          <mat-icon>photo_camera</mat-icon>
+        </a>
+        <a href="#" target="_blank" aria-label="Pinterest">
+          <mat-icon>link</mat-icon>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-section">
+      <h3>{{translate('quickLinks')}}</h3>
+      <nav>
+        <a routerLink="/">{{translate('home')}}</a>
+        <a routerLink="/services">{{translate('services')}}</a>
+        <a routerLink="/stylists">{{translate('stylists')}}</a>
+        <a routerLink="/booking">{{translate('booking')}}</a>
+        <a routerLink="/contact">{{translate('contact')}}</a>
+      </nav>
+    </div>
+
+    <div class="footer-section">
+      <h3>{{translate('contactUs')}}</h3>
+      <div class="contact-info">
+        <p>
+          <mat-icon>location_on</mat-icon>
+          <span>Sarajevo, Bosnia and Herzegovina</span>
+        </p>
+        <p>
+          <mat-icon>phone</mat-icon>
+          <span>+387 61 123 456</span>
+        </p>
+        <p>
+          <mat-icon>email</mat-icon>
+          <span>arman@gmail.com</span>
+        </p>
+        <p>
+          <mat-icon>schedule</mat-icon>
+          <span>{{translate('workingHours')}}</span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; {{currentYear}} <span class="brand">ARMAN</span> | {{translate('allRightsReserved')}}</p>
+  </div>
 </footer>
